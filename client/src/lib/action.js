@@ -14,3 +14,19 @@ export const postData = async (v) => {
     }
     return data
 }
+
+
+export const actionPostCompanyData = async (v,path) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}${path}`,{
+        method: "POST",
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(v)
+    })
+    const data = await res.json()
+    if(data.insertedId){
+        toast.success("data Successfully")
+    }
+    return data
+}

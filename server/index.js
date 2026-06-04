@@ -26,6 +26,7 @@ const run = async () => {
 
         const db = client.db('authHire')
         const userCollection = db.collection('allData')
+        const companyCollection = db.collection('companies')
 
         app.get('/user', async (req,res) => {
             const result = await userCollection.find().toArray()
@@ -48,6 +49,14 @@ const run = async () => {
         app.post('/user', async (req,res) => {
             const newUser = req.body
             const result = await userCollection.insertOne(newUser)
+            res.send(result)
+        })
+
+        // companies
+
+        app.post('/api/companies', async(req,res) => {
+            const newUser = req.body
+            const result = await companyCollection.insertOne(newUser)
             res.send(result)
         })
 

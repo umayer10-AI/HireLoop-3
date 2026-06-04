@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { X, Upload, Plus } from "lucide-react";
+import { postCompanyData } from "@/lib/api/companies";
 
 const RegisterCompanyModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,6 +60,7 @@ const RegisterCompanyModal = () => {
       };
 
       console.log("Company Data:", companyData);
+      await postCompanyData(companyData)
 
       reset();
       setIsOpen(false);
@@ -67,6 +69,8 @@ const RegisterCompanyModal = () => {
     } finally {
       setUploading(false);
     }
+
+      
   };
 
   return (
