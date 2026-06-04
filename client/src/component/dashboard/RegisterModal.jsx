@@ -4,7 +4,8 @@ import { useForm } from "react-hook-form";
 import { Plus, X, MapPin, ChevronDown, Calendar, DollarSign, Briefcase, Gift } from "lucide-react";
 import { postData } from "@/lib/action";
 
-export const AddJobs = () => {
+export const AddJobs = ({company}) => {
+  // console.log(company)
   const [isOpen, setIsOpen] = useState(false);
   const { register, handleSubmit, reset } = useForm();
 

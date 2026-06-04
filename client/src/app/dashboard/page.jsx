@@ -2,6 +2,7 @@ import DashboardStats from '@/component/dashboard/Box1';
 import { RecentApplications } from '@/component/dashboard/Box2';
 import { TopCompanies } from '@/component/dashboard/Box3';
 import { AddJobs, CompanyRegistrationModal } from '@/component/dashboard/RegisterModal';
+import { getLoggedReqruiter } from '@/lib/api/companies';
 import { auth } from '@/lib/auth';
 import { authClient } from '@/lib/auth-client';
 import { headers } from 'next/headers';
@@ -13,13 +14,15 @@ const page = async () => {
         headers: await headers(),
     });
     const user = session?.user
-    console.log(user)
+
+    const company = await getLoggedReqruiter()
+    // console.log(company)
 
     return (
         <div>
             <div className='flex items-center justify-between'>
                 <h2 className='text-3xl'>Welcome back, {user?.name}</h2>
-                <AddJobs></AddJobs>
+                <AddJobs company={company}></AddJobs>
             </div>
             <DashboardStats></DashboardStats>
             <div className='grid grid-cols-3 gap-10'>

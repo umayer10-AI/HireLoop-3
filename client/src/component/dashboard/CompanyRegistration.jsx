@@ -57,7 +57,8 @@ const RegisterCompanyModal = ({user}) => {
         employeeCount: data.employeeCount,
         description: data.description,
         logo: imageUrl,
-        reqruiterId: user.id
+        reqruiterId: user.id,
+        status: 'pending'
       };
 
       console.log("Company Data:", companyData);

@@ -60,6 +60,15 @@ const run = async () => {
             res.send(result)
         })
 
+        app.get('/api/my/companies', async(req,res) => {
+            const query = {}
+            if(req.query.reqruiterId){
+                query.reqruiterId = req.query.reqruiterId
+            }
+            const result = await companyCollection.findOne(query)
+            res.send(result)
+        })
+
         await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } 
