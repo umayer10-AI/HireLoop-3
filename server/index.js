@@ -27,6 +27,7 @@ const run = async () => {
         const db = client.db('authHire')
         const userCollection = db.collection('allData')
         const companyCollection = db.collection('companies')
+        const jobsCollection = db.collection('jobs')
 
         app.get('/user', async (req,res) => {
             const result = await userCollection.find().toArray()
@@ -35,20 +36,24 @@ const run = async () => {
 
         app.get('/user/jobs', async (req,res) => {
             const query = {}
-            if(req.query.companyID){
-                query.companyID = req.query.companyID
+            if(req.query.companyId){
+                query.companyId = req.query.companyId
             }
             if(req.query.status){
                 query.status = req.query.status
             }
-            console.log(query.companyID,query.status)
+            console.log(query.companyId,query.status)
             const result = await userCollection.find(query).toArray()
             res.send(result)
         })
 
         app.post('/user', async (req,res) => {
             const newUser = req.body
-            const result = await userCollection.insertOne(newUser)
+            const newJob = {
+                ...newUser,
+                createAt: new Date()
+            }
+            const result = await userCollection.insertOne(newJob)
             res.send(result)
         })
 
@@ -56,7 +61,16 @@ const run = async () => {
 
         app.post('/api/companies', async(req,res) => {
             const newUser = req.body
-            const result = await companyCollection.insertOne(newUser)
+            const newCompany = {
+                ...newUser,
+                createAt: new Date()
+            }
+            const result = await companyCollection.insertOne(newCompany)
+            res.send(result)
+        })
+
+        app.get('/user/jobs/browser', async (req,res) => {
+            const result = await jobsCollection.find().toArray()
             res.send(result)
         })
 

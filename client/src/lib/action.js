@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation"
 import toast from "react-hot-toast"
 
 export const postData = async (v) => {
@@ -11,6 +12,7 @@ export const postData = async (v) => {
     const data = await res.json()
     if(data.insertedId){
         toast.success('data Added')
+        redirect('/dashboard')
     }
     return data
 }

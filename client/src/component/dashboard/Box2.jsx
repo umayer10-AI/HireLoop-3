@@ -1,10 +1,19 @@
 import { companyJobs } from "@/lib/api/jobs";
+import { auth } from "@/lib/auth";
 import { Eye, SquarePen, Trash2 } from "lucide-react";
+import { headers } from "next/headers";
 
 
 export const RecentApplications = async () => {
+
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+  const user = session?.user
+  console.log(user)
   
-  const applications = await companyJobs('company_123');
+  const applications = await companyJobs(user.id);
+  console.log(applications)
 
   return (
     <div className="bg-[#1a1a1a] p-6 rounded-xl border border-gray-800">

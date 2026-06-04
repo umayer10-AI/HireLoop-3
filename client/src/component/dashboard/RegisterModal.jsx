@@ -3,9 +3,12 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Plus, X, MapPin, ChevronDown, Calendar, DollarSign, Briefcase, Gift } from "lucide-react";
 import { postData } from "@/lib/action";
+import { authClient } from "@/lib/auth-client";
 
 export const AddJobs = ({company}) => {
-  // console.log(company)
+  const { data: session } = authClient.useSession()
+  const user = session?.user
+  console.log(user)
   const [isOpen, setIsOpen] = useState(false);
   const { register, handleSubmit, reset } = useForm();
 
@@ -13,7 +16,7 @@ export const AddJobs = ({company}) => {
     const v = {
       ...data,
       status: "active",
-      companyID: "company_123"
+      companyId: user.id
     }
     console.log(v);
     setIsOpen(false);

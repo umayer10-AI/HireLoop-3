@@ -4,7 +4,6 @@ import { TopCompanies } from '@/component/dashboard/Box3';
 import { AddJobs, CompanyRegistrationModal } from '@/component/dashboard/RegisterModal';
 import { getLoggedReqruiter } from '@/lib/api/companies';
 import { auth } from '@/lib/auth';
-import { authClient } from '@/lib/auth-client';
 import { headers } from 'next/headers';
 import React from 'react';
 
@@ -14,9 +13,10 @@ const page = async () => {
         headers: await headers(),
     });
     const user = session?.user
+    console.log(user)
 
     const company = await getLoggedReqruiter()
-    // console.log(company)
+    console.log(company)
 
     return (
         <div>
