@@ -1,6 +1,7 @@
 import React from 'react';
 import { Plus } from 'lucide-react';
 import { CompanyRegistrationModal } from './RegisterModal';
+import RegisterCompanyModal from './CompanyRegistration';
 
 export const HeaderSection = () => {
   return (
@@ -16,7 +17,8 @@ export const HeaderSection = () => {
         <Plus size={16} />
         Register a company
       </button> */}
-      <CompanyRegistrationModal></CompanyRegistrationModal>
+      {/* <CompanyRegistrationModal></CompanyRegistrationModal> */}
+      <RegisterCompanyModal></RegisterCompanyModal>
     </div>
   );
 };

@@ -34,13 +34,13 @@ const run = async () => {
 
         app.get('/user/jobs', async (req,res) => {
             const query = {}
-            if(req.query.companyName){
-                query.companyName = req.query.companyName
+            if(req.query.companyID){
+                query.companyID = req.query.companyID
             }
             if(req.query.status){
                 query.status = req.query.status
             }
-            console.log(query.companyName,query.status)
+            console.log(query.companyID,query.status)
             const result = await userCollection.find(query).toArray()
             res.send(result)
         })

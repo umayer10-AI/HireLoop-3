@@ -1,19 +1,26 @@
-"use client"
 import DashboardStats from '@/component/dashboard/Box1';
 import { RecentApplications } from '@/component/dashboard/Box2';
 import { TopCompanies } from '@/component/dashboard/Box3';
+import { AddJobs, CompanyRegistrationModal } from '@/component/dashboard/RegisterModal';
+import { auth } from '@/lib/auth';
 import { authClient } from '@/lib/auth-client';
+import { headers } from 'next/headers';
 import React from 'react';
 
-const page = () => {
+const page = async () => {
 
-    const { data: session } = authClient.useSession()
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
     const user = session?.user
-    // console.log(user)
+    console.log(user)
 
     return (
         <div>
-            <h2 className='text-3xl'>Welcome back, {user?.name}</h2>
+            <div className='flex items-center justify-between'>
+                <h2 className='text-3xl'>Welcome back, {user?.name}</h2>
+                <AddJobs></AddJobs>
+            </div>
             <DashboardStats></DashboardStats>
             <div className='grid grid-cols-3 gap-10'>
                 <div className='col-span-2'>

@@ -1,44 +1,10 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { companyJobs } from "@/lib/api/jobs";
+import { Eye, SquarePen, Trash2 } from "lucide-react";
 
-const dummyApplications = [
-  {
-    name: "Julianne Moore",
-    role: "Senior Product Designer",
-    date: "Oct 24, 2023",
-    exp: "6 years",
-    status: "Interviewing",
-    color: "bg-green-900/30 text-green-400",
-  },
-  {
-    name: "Robert Downey",
-    role: "Backend Engineer",
-    date: "Oct 23, 2023",
-    exp: "4 years",
-    status: "New",
-    color: "bg-gray-700 text-gray-300",
-  },
-];
 
-export const RecentApplications = () => {
-  const [applications, setApplications] = useState(dummyApplications);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await companyJobs('haha');
-        console.log(data)
-        setApplications(data);
-      } catch (err) {
-        console.log("Error loading applications:", err);
-      }
-    };
-
-    fetchData();
-  }, []);
+export const RecentApplications = async () => {
   
+  const applications = await companyJobs('company_123');
 
   return (
     <div className="bg-[#1a1a1a] p-6 rounded-xl border border-gray-800">
@@ -59,24 +25,49 @@ export const RecentApplications = () => {
 
       {applications.map((app, i) => (
         <div
-          key={app._id || i}
-          className="grid grid-cols-5 items-center py-4 border-t border-gray-800 text-white"
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gray-700" />
-            <span className="font-medium">{app.companyName}</span>
-          </div>
+  key={app._id || i}
+  className="grid grid-cols-6 items-center py-4 border-t border-gray-800 text-white"
+>
+  <div className="flex items-center gap-3">
+    <div className="w-8 h-8 rounded-full bg-gray-700" />
+    <span className="font-medium">{app.companyName}</span>
+  </div>
 
-          <span>{app.jobType}</span>
-          <span>{app.deadline}</span>
-          <span>{app.industry}</span>
+  <span>{app.jobType}</span>
+  <span>{app.deadline}</span>
+  <span>{app.industry}</span>
 
-          <span
-            className={`px-3 py-1 rounded-full text-xs w-fit ${app.color || "bg-gray-700 text-gray-300"}`}
-          >
-            {app.status}
-          </span>
-        </div>
+  <span
+    className={`px-3 py-1 rounded-full text-xs w-fit ${
+      app.color || "bg-gray-700 text-gray-300"
+    }`}
+  >
+    {app.status}
+  </span>
+
+  <div className="flex items-center gap-3">
+    <button
+      className="p-2 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 transition"
+      title="Details"
+    >
+      <Eye size={18} />
+    </button>
+
+    <button
+      className="p-2 rounded-lg bg-green-500/10 text-green-400 hover:bg-green-500/20 transition"
+      title="Edit"
+    >
+      <SquarePen size={18} />
+    </button>
+
+    <button
+      className="p-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition"
+      title="Delete"
+    >
+      <Trash2 size={18} />
+    </button>
+  </div>
+</div>
       ))}
     </div>
   );
