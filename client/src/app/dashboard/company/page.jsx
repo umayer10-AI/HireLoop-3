@@ -10,7 +10,7 @@ const page = async () => {
 
     return (
         <div>
-            <HeaderSection></HeaderSection>
+            <HeaderSection user={user}></HeaderSection>
             <MyCompanies></MyCompanies>
         </div>
     );

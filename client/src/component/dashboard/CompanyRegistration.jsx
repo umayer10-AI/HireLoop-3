@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { X, Upload, Plus } from "lucide-react";
 import { postCompanyData } from "@/lib/api/companies";
 
-const RegisterCompanyModal = () => {
+const RegisterCompanyModal = ({user}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [uploading, setUploading] = useState(false);
 
@@ -57,6 +57,7 @@ const RegisterCompanyModal = () => {
         employeeCount: data.employeeCount,
         description: data.description,
         logo: imageUrl,
+        reqruiterId: user.id
       };
 
       console.log("Company Data:", companyData);

@@ -3,7 +3,7 @@ import { Plus } from 'lucide-react';
 import { CompanyRegistrationModal } from './RegisterModal';
 import RegisterCompanyModal from './CompanyRegistration';
 
-export const HeaderSection = () => {
+export const HeaderSection = ({user}) => {
   return (
     <div className="flex justify-between items-center py-6">
       <div>
@@ -18,7 +18,7 @@ export const HeaderSection = () => {
         Register a company
       </button> */}
       {/* <CompanyRegistrationModal></CompanyRegistrationModal> */}
-      <RegisterCompanyModal></RegisterCompanyModal>
+      <RegisterCompanyModal user={user}></RegisterCompanyModal>
     </div>
   );
 };
