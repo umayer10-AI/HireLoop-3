@@ -186,7 +186,7 @@ export default function Jobs({ initialJobs = [] }) {
               {/* Action Link: Apply Section */}
               <div className="mt-auto border-t border-neutral-900 pt-4 flex justify-between items-center">
                 <Link
-                  href={`/jobs/${job.companyId|| job._id}`}
+                  href={`/jobs/${job._id}`}
                   className="inline-flex items-center gap-2 text-sm font-medium text-neutral-200 hover:text-white transition-colors duration-200"
                 >
                   Apply Now

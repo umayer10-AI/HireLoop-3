@@ -1,5 +1,5 @@
 import JobDetailsPage from '@/component/JobDetailsPage';
-import { getJobsData } from '@/lib/jobData';
+import { getJobsIdData } from '@/lib/jobData';
 import Link from 'next/link';
 import React from 'react';
 
@@ -7,8 +7,7 @@ const page = async ({params}) => {
 
     const {id} = await params
     // console.log(id)
-    const allJobs = await getJobsData();
-    const job = allJobs.find((j) => j.companyId === id || j._id === id);
+    const job = await getJobsIdData(id);
 
     if (!job) {
     return (
