@@ -21,7 +21,6 @@ const page = async ({params}) => {
   }
 
 
-  
 
     return (
         <div>
