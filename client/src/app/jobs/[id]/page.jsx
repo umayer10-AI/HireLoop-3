@@ -19,6 +19,7 @@ const page = async ({params}) => {
       </div>
     );
   }
+  
 
     return (
         <div>
