@@ -37,7 +37,7 @@ export default function Jobs({ initialJobs = [] }) {
   }, [searchQuery, selectedType, selectedCategory, isRemoteOnly, initialJobs]);
 
   return (
-    <div className="w-full max-w-6xl mx-auto">
+    <div className="w-full max-w-[80%] mx-auto">
       
       {/* --- Image 4257.jpg Onujayi Filter UI Bar --- */}
       <div className="w-full mb-8 bg-[#121212]/90 backdrop-blur-md p-4 rounded-2xl border border-neutral-800 shadow-2xl flex flex-wrap items-end gap-4">
@@ -112,7 +112,7 @@ export default function Jobs({ initialJobs = [] }) {
       </div>
 
       {/* --- Jobs Card Container Grid UI Area (Server-safe Layout Rendering) --- */}
-      <div className="grid grid-cols-3 items-stretch gap-6 w-full">
+      <div className="grid grid-cols-4 items-stretch gap-6 w-full">
         {filteredJobs.length > 0 ? (
           filteredJobs.map((job, index) => (
             <div 
