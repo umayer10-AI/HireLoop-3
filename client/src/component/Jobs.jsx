@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import React, { useState, useMemo } from 'react';
 
 export default function Jobs({ initialJobs = [] }) {
@@ -184,15 +185,15 @@ export default function Jobs({ initialJobs = [] }) {
               
               {/* Action Link: Apply Section */}
               <div className="mt-auto border-t border-neutral-900 pt-4 flex justify-between items-center">
-                <a 
-                  href={`/jobs/${job.companyId || '#'}`}
+                <Link
+                  href={`/jobs/${job.companyId|| job._id}`}
                   className="inline-flex items-center gap-2 text-sm font-medium text-neutral-200 hover:text-white transition-colors duration-200"
                 >
                   Apply Now
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transform group-hover:translate-x-1 transition-transform text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
-                </a>
+                </Link>
                 
                 {job.deadline && (
                   <span className="text-[11px] text-neutral-500">
