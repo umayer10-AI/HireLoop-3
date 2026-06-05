@@ -23,7 +23,6 @@ const page = async ({params}) => {
 
 
 
-
     return (
         <div>
             <JobDetailsPage job={job}></JobDetailsPage>
